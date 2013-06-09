@@ -14,10 +14,18 @@ int main() {
 </script>
 
 <script type="text/cpp">
-#include <stdio.h>
+#include <iostream>
+#include <string>
+
+/* couts take a long ass time */
+double someFunction(int num) {
+    double another = num * 8.0;
+    return another;
+}
 
 int main() {
-    printf("This is a test of Babelfish\n");
+    std::cout << "This is a test of Babelfish\n" << std::endl;
+    std::cout << "Here is a number: " << someFunction(7) << std::endl;
     return 0;
 }
 </script>
