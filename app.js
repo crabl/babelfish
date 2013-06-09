@@ -16,7 +16,7 @@ var app = express();
 // all environments
 app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.engine('html', require('ejs').renderFile);
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -34,7 +34,11 @@ function emscripten_compile(fileName, callback) {
     });
 }
 
-app.post('/cpp', function(req, res){
+app.get("/", function(req, res) {
+    res.render("test.html");
+});
+
+app.post('/cpp', function(req, res) {
     console.log("Got file from client:");
     console.log(req.param('script'));
     var fileName = crypto.randomBytes(16).toString('hex');
